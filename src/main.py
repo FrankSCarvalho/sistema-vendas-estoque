@@ -5,6 +5,7 @@ import sys
 from PySide6.QtWidgets import QApplication, QMainWindow, QTabWidget, QWidget, QVBoxLayout
 from PySide6.QtCore import Qt
 from models.database import db, criar_tabelas
+from views.produto_view import ProdutoView
 
 
 class JanelaPrincipal(QMainWindow):
@@ -55,35 +56,33 @@ class JanelaPrincipal(QMainWindow):
         aba_vendas = QWidget()
         layout = QVBoxLayout(aba_vendas)
         # Aqui virá a interface de vendas
-        self.abas.addTab(aba_vendas, "Vendas")
+        self.abas.addTab(aba_vendas, "💰 Vendas")
     
     def criar_aba_produtos(self):
         """Cria a aba de produtos"""
-        aba_produtos = QWidget()
-        layout = QVBoxLayout(aba_produtos)
-        # Aqui virá a interface de produtos
-        self.abas.addTab(aba_produtos, "Produtos")
+        self.aba_produtos = ProdutoView()
+        self.abas.addTab(self.aba_produtos, "📦 Produtos")
     
     def criar_aba_clientes(self):
         """Cria a aba de clientes"""
         aba_clientes = QWidget()
         layout = QVBoxLayout(aba_clientes)
         # Aqui virá a interface de clientes
-        self.abas.addTab(aba_clientes, "Clientes")
+        self.abas.addTab(aba_clientes, "👥 Clientes")
     
     def criar_aba_estoque(self):
         """Cria a aba de estoque"""
         aba_estoque = QWidget()
         layout = QVBoxLayout(aba_estoque)
         # Aqui virá a interface de estoque
-        self.abas.addTab(aba_estoque, "Estoque")
+        self.abas.addTab(aba_estoque, "📊 Estoque")
     
     def criar_aba_relatorios(self):
         """Cria a aba de relatórios"""
         aba_relatorios = QWidget()
         layout = QVBoxLayout(aba_relatorios)
         # Aqui virá a interface de relatórios
-        self.abas.addTab(aba_relatorios, "Relatórios")
+        self.abas.addTab(aba_relatorios, "📈 Relatórios")
     
     def closeEvent(self, event):
         """Fecha a conexão com o banco ao fechar o aplicativo"""
@@ -95,6 +94,10 @@ class JanelaPrincipal(QMainWindow):
 def main():
     """Função principal"""
     app = QApplication(sys.argv)
+    
+    # Estilo da aplicação
+    app.setStyle('Fusion')
+    
     janela = JanelaPrincipal()
     janela.show()
     sys.exit(app.exec())
